@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ employee }}{% endblock %}
+
+{% block content %}
+<h2>{{ employee.last_name }} {{ employee.first_name }} {{ employee.middle_name }}</h2>
+<p><strong>Пол:</strong> {{ employee.get_gender_display }}</p>
+<p><strong>Описание:</strong> {{ employee.description }}</p>
+
+<h3>Навыки</h3>
+<ul>
+    {% for es in employee.employeeskill_set.all %}
+        <li>{{ es.skill.name }} — уровень {{ es.level }}/10</li>
+    {% empty %}
+        <li>Навыки не указаны.</li>
+    {% endfor %}
+</ul>
+
+<h3>Фотографии</h3>
+<div class="gallery">
+    {% for image in employee.images.all %}
+        <img src="{{ image.image.url }}" alt="{{ employee }}" width="200">
+    {% empty %}
+        <p>Фотографий нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}

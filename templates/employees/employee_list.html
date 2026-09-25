@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Сотрудники{% endblock %}
+
+{% block content %}
+<h2>Список сотрудников</h2>
+<div class="grid">
+    {% for employee in employees %}
+        <div class="card">
+            <a href="{% url 'employee_detail' employee.pk %}">
+                {% if employee.images.first %}
+                    <img src="{{ employee.images.first.image.url }}" alt="{{ employee }}">
+                {% endif %}
+                <h3>{{ employee.last_name }} {{ employee.first_name }}</h3>
+            </a>
+        </div>
+    {% empty %}
+        <p>Сотрудников пока нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}

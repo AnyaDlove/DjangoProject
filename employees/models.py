@@ -8,7 +8,6 @@ class Skill(models.Model):
     def __str__(self):
         return self.name
 
-
 class Employee(AbstractUser):
     GENDER_CHOICES = [
         ("M", "Мужской"),
