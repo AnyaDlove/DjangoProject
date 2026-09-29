@@ -38,6 +38,12 @@ class Employee(AbstractUser):
             return 0
         return (date.today() - self.hire_date).days
 
+    class Meta(AbstractUser.Meta):
+        permissions = [
+            ("move_employee", "Может перемещать сотрудников между столами"),
+            ("manage_employees", "Может управлять сотрудниками (CRUD)"),
+        ]
+
 
 class EmployeeImage(models.Model):
     employee = models.ForeignKey(

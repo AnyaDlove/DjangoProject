@@ -9,6 +9,11 @@ class Workplace(models.Model):
     desk_number = models.CharField(max_length=10)
     extra_info = models.TextField(blank=True, null=True)
 
+    class Meta:
+        permissions = [
+            ("move_workplace", "Может перемещать сотрудников между столами"),
+        ]
+
     def clean(self):
         super().clean()
         if not self.desk_number or not self.employee:
